@@ -13,6 +13,7 @@ import palvelinohjelmointi.futisappi.domain.ClubRepository;
 import palvelinohjelmointi.futisappi.domain.Player;
 import palvelinohjelmointi.futisappi.domain.PlayerRepository;
 import palvelinohjelmointi.futisappi.domain.PositionRepository;
+import javax.validation.Valid;
 
 @Controller
 public class FutisappiController {
@@ -54,7 +55,12 @@ public class FutisappiController {
 	}
 	
 	@RequestMapping(value = "/saveplayer", method = RequestMethod.POST)
-	public String savePlayer(Player player) {
+	public String savePlayer(@Valid Player player, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("clubs", crepository.findAll());
+			model.addAttribute("positions", posrepository.findAll());
+			return "addplayer";
+		}
 		repository.save(player);
 		return "redirect:playerlist";
 	}

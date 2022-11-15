@@ -29,6 +29,7 @@ public class WebSecurityConfig {
 				.permitAll()
 				.and()
 			.logout()
+				.logoutSuccessUrl("/playerlist")
 				.permitAll()
 				.and()
 				.httpBasic();

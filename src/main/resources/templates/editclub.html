@@ -8,9 +8,9 @@
 <body>
 	<h1>Edit club</h1>
 	<div>
-		<form th:object="${club}" th:action="@{../saveclub}" action="#" method="post">
+		<form th:object="${club}" th:action="@{/clubready/{id}(id=${id})}" action="#" method="post">
 			<label for="id"></label>
-			<input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
+			<input type="hidden" id="id" th:field="*{clubId}" readonly="readonly" />
 		  	<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>

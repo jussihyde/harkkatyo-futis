@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,6 +22,7 @@ public class Club {
 	private Long clubId;
 	
 	//atribuutti
+	@NotEmpty
 	private String name;
 	
 	@JsonIgnore
@@ -43,8 +45,8 @@ public class Club {
 		return clubId;
 	}
 
-	public void setClubId(Long id) {
-		this.clubId = id;
+	public void setClubId(Long clubId) {
+		this.clubId = clubId;
 	}
 
 	public String getName() {

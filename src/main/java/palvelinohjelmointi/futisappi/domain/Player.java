@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 
@@ -17,7 +19,9 @@ public class Player {
 	private Long id;
 	
 	//atribuutit
+	@NotEmpty
 	private String name;
+	@NotNull
 	private Integer number;
 	
 	@ManyToOne
