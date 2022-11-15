@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Club-list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />    
+</head>
+<body>
+
+	<table class="table table-striped">
+		
+    	<tr th:each = "club : ${clubs}">
+    		<td th:text="${club.name}">Name: </td>
+    		<td><a class="btn btn-danger" th:href="@{/deleteclub/{id}(id=${club.clubId})}">Delete</a></td>
+    		<td><a class="btn btn-success" th:href="@{/editclub/{id}(id=${club.clubId})}">Edit</a></td>
+    		<td><a class="btn btn-success" th:href="@{/playersbyclub/{id} (id=${club.clubId})}">Players</a></td>
+
+    	</tr>
+     </table>
+     
+     <a class="btn btn-success" href="/addclub">Add club</a>
+       <a class="btn btn-success" href="/playerlist">Back to Player-list</a>
+</body>
+</html>

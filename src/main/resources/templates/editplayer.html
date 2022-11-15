@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Futisappi Edit player</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit player</h1>
+	<div>
+		<form th:object="${player}" th:action="@{/editreadyplayer/{id}(id=${player.id})}" action="#" method="post">
+			<label for="id"></label>
+			<input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
+		  	<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="number">Number</label>
+			<input type="text" id="number" th:field="*{number}" />
+			<div class="alert alert-warning" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="catlist">Club</label>
+				<select id="catlist" th:field="*{club}">
+					<option th:each="club: ${clubs}" th:value="${club.clubId}" th:text="${club.name}"></option>
+				</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="catlist">Position</label>
+				<select id="catlist" th:field="*{position}">
+					<option th:each="position: ${positions}" th:value="${position.id}" th:text="${position.pos}"></option>
+				</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<br>
+			<input type="submit" class="btn btn-success"value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

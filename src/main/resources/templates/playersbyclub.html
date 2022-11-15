@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Players by Club</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />    
+</head>
+<body>
+
+	<table class="table table-striped">
+    	<th:block th:each = "club : ${club}">		
+    	 	<tr th:each="player : ${club.players}">
+				<td th:text="${player.name}">name </td>
+				<td th:text="${player.number}">number </td>
+				<td th:text="${player.position.pos}">position </td>		
+			</tr>
+           
+
+    	</th:block>
+     </table>
+     <a class="btn btn-success" href="/clublist">Go back</a>
+</body>
+</html>
