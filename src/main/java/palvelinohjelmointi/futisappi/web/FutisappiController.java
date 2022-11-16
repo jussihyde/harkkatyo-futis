@@ -32,10 +32,6 @@ public class FutisappiController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/squadbuilder")
-	public String squadBuilder() {
-		return "squadbuilder";
-	}
 	
 	@RequestMapping(value = "/playerlist")
 	public String playerlist(Model model) {
