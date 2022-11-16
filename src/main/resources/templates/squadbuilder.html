@@ -22,11 +22,10 @@ function SquadBuilder() {
   React.useEffect(() => { fetch('http://localhost:8080/players')
     .then(response => response.json())
     .then(responseData => { setPlayers(responseData) })
-    //setPlayers('players',[responseData])
     .then( setPlayer(players => ['players',[players]]) )
     .catch(err => console.error(err))
 }, [])
-  console.log(player)
+  console.log(player[0])
 
 
 
