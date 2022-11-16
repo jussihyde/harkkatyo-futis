@@ -23,7 +23,7 @@ function SquadBuilder() {
     .then(response => response.json())
     .then(responseData => { setPlayers(responseData) })
     //setPlayers('players',[responseData])
-    //.then( setPlayers(player => [...players, ...[player]]) )
+    .then( setPlayer(players => ['players',[players]]) )
     .catch(err => console.error(err))
 }, [])
   console.log(players)
@@ -43,7 +43,7 @@ function SquadBuilder() {
             <th>Club</th>
             <th>Position</th>
           </tr>
-          { players.map(([players]) => 
+          { player.map(([players]) => 
           <tr key={players.id}>
             <td>{players.name}</td>
             <td>{players.number}</td>
