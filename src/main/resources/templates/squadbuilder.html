@@ -23,7 +23,7 @@ function SquadBuilder() {
     .then(response => response.json())
     .then(responseData => { setPlayers(responseData) })
     //setPlayers('players',[responseData])
-    .then( setPlayer(players => ['players',[players]]) )
+    .then( setPlayer(players => ['players',players]) )
     .catch(err => console.error(err))
 }, [])
   console.log(players,player)
