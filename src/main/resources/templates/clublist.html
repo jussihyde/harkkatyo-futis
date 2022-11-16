@@ -30,8 +30,8 @@
 		
     	<tr th:each = "club : ${clubs}">
     		<td th:text="${club.name}">Name: </td>
-    		<td><a class="btn btn-danger" th:href="@{/deleteclub/{id}(id=${club.clubId})}">Delete</a></td>
-    		<td><a class="btn btn-success" th:href="@{/editclub/{id}(id=${club.clubId})}">Edit</a></td>
+    		<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deleteclub/{id}(id=${club.clubId})}">Delete</a></td>
+    		<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-success" th:href="@{/editclub/{id}(id=${club.clubId})}">Edit</a></td>
     		<td><a class="btn btn-success" th:href="@{/playersbyclub/{id} (id=${club.clubId})}">Players</a></td>
 
     	</tr>
