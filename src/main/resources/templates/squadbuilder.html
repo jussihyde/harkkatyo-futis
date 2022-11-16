@@ -42,7 +42,7 @@ function SquadBuilder() {
             <th>Club</th>
             <th>Position</th>
           </tr>
-          { player.map(([players]) => 
+          { players.map(([players]) => 
           <tr key={players.id}>
             <td>{players.name}</td>
             <td>{players.number}</td>
