@@ -1,64 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
  <head>
- 	<meta charset="UTF-8" />
+ 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
  	<title>Futisappi - Squad Builder</title>
  </head>
  <body>
- 	<div id="root"></div>
- 	
- 	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
-
-    <!-- Load our React component. -->
-    <script type="text/babel">
-
-function SquadBuilder() {
-  const [player, setPlayer] = React.useState([]);
-  const [players, setPlayers] = React.useState({});
-  //const [items, setItems] = React.useState([]);
-
-  React.useEffect(() => { fetch('http://localhost:8080/players')
-    .then(response => response.json())
-    .then(responseData => { setPlayers(responseData) })
-    .then( setPlayer(players => ['players',[players]]) )
-    .catch(err => console.error(err))
-}, [])
-  console.log(player[1].[])
-
-
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Futisappi - Squad Builder</h1>
-      </header>
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Number</th>
-            <th>Club</th>
-            <th>Position</th>
-          </tr>
-          { player.map((players) => 
-          <tr key={players.id}>
-            <td>{players.name}</td>
-            <td>{players.number}</td>
-          </tr>
-          )
-
-          }
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(<div><SquadBuilder /></div>);
-
-    </script>
- </body>
+	<div class="col-md-4">
+	<h1>Player list</h1>
+	</div>
+	<div class="col-md-4">
+	<h3 sec:authorize="isAuthenticated()" th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4">
+	<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+	</form>
+	</div>
+	<div class="col-md-4">
+	<form sec:authorize="!isAuthenticated()" th:action="@{/login}" method="post">
+		<input type="submit" value="Sign In" class="btn btn-sm btn-danger"/>
+	</form>
+	</div>
+	<table class="table table-striped">
+		<tbody>
+			<tr th:each = "player : ${players}">
+				<td th:text="${player.name}"></td>
+				<td th:text="${player.number}"></td>
+				<td th:text="${player.club.name}"></td>
+				<td th:text="${player.position.pos}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')" ><a class="btn btn-danger" th:href="@{/deleteplayer/{id}(id=${player.id})}">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')" ><a class="btn btn-success" th:href="@{/editplayer/{id}(id=${player.id})}">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a class="btn btn-success" href="/addplayer">Add player</a>
+	<a class="btn btn-success" href="/clublist">To Club-list</a>
+	<a class="btn btn-success" href="/squadbuilder">To Squad Builder</a>
+</body>
 </html>
