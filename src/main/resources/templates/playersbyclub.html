@@ -8,6 +8,11 @@
 <body>
 
 	<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Number</th>
+				<th>Position</th>
+			</tr>
     	<th:block th:each = "club : ${club}">		
     	 	<tr th:each="player : ${club.players}">
 				<td th:text="${player.name}">name </td>
