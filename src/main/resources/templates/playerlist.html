@@ -24,6 +24,13 @@
 	</div>
 	<table class="table table-striped">
 		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Number</th>
+				<th>Club</th>
+				<th>Position</th>
+			</tr>
+		
 			<tr th:each = "player : ${players}">
 				<td th:text="${player.name}"></td>
 				<td th:text="${player.number}"></td>
